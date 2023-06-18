@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Authentication</title>
+    <link rel="icon" href="Images/2.jpeg" type="image/x-icon" class="favicon">
+    <link rel="stylesheet" href="Styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section>
+    <div class="login">
+        <form action="">
+            <div class="login-content" id="logincontent">
+                <h1>Sing In</h1>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+                    <input type="email" required id="userEmail">
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon>
+                    </span>
+                    <input type="password" required id="userPassword">
+                    <label>Password</label>
+                </div>
+    
+                <button type="submit" id="signIn">Sign In</button>
+                <div class="register">
+                    <p id="signUp" >Don't have an account ?    <a href="#">Sign Up</a></p>
+                </div>
+    
+            </div>
+        </form>
+    </div>
+
+     <!-- hidden note -->
+            <!-- <div class="content" id="authcontent">
+                <h1>Authentication for the purpose of securing data</h1>
+                <button id="signOut">Sign Out</button>
+            </div> -->
+    </section>
+    
+    <script src="Main.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+        import { 
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            singOut
+         } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyChlqyq7IELvUWOcY8HBwrpuhSEjpmYwAo",
+          authDomain: "otp-authentication-7c6b7.firebaseapp.com",
+          projectId: "otp-authentication-7c6b7",
+          storageBucket: "otp-authentication-7c6b7.appspot.com",
+          messagingSenderId: "412675836181",
+          appId: "1:412675836181:web:98b38e797a2cd2c151811c"
+        };
+      
+        // Initialize Firebase
+
+        const app = initializeApp(firebaseConfig);
+        const Auth = getAuth(app);
+
+        const userEmail = document.querySelector("#userEmail");
+        const userPassword = document.querySelector("#userPassword");
+        const loginContent = document.querySelector("#logincontent");
+        const authContent = document.querySelector("#authcontent");
+        const signUp = document.querySelector("#signUp");
+        const signIn = document.querySelector("#signIn");
+        const signOut = document.querySelector("#signOut");
+
+        authContent.style.display = 'none'
+
+
+        </script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
+</body>
+</html>
