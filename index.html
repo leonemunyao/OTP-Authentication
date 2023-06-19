@@ -14,8 +14,8 @@
     <section>
     <div class="login">
         <form action="">
-            <div class="login-content" id="logincontent">
-                <h1>Sing In</h1>
+            <div class="login-content" id="loginContent">
+                <h1>Sign In</h1>
                 <div class="input-box">
                     <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
                     <input type="email" required id="userEmail">
@@ -24,24 +24,25 @@
                 <div class="input-box">
                     <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon>
                     </span>
-                    <input type="password" required id="userPassword">
+                    <input type="password" required id="userPassword" autocomplete="on">
                     <label>Password</label>
                 </div>
     
                 <button type="submit" id="signIn">Sign In</button>
+
                 <div class="register">
-                    <p id="signUp" >Don't have an account ?    <a href="#">Sign Up</a></p>
+                    <button type="submit" id="signUp">Sign Up</button>
+                </div>
+
+                <div class="content" id="authContent">
+                    <h1>Authentication for the purpose of securing data</h1>
+                    <button id="signOut">Sign Out</button>
                 </div>
     
             </div>
         </form>
     </div>
 
-     <!-- hidden note -->
-            <!-- <div class="content" id="authcontent">
-                <h1>Authentication for the purpose of securing data</h1>
-                <button id="signOut">Sign Out</button>
-            </div> -->
     </section>
     
     <script src="Main.js"></script>
@@ -49,14 +50,15 @@
     <script type="module">
         // Import the functions you need from the SDKs you need
 
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
         import { 
             getAuth,
             createUserWithEmailAndPassword,
             signInWithEmailAndPassword,
             onAuthStateChanged,
-            singOut
-         } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+            signOut
+            // authContent
+         } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
@@ -74,17 +76,35 @@
         // Initialize Firebase
 
         const app = initializeApp(firebaseConfig);
-        const Auth = getAuth(app);
+        const auth = getAuth(app);
 
         const userEmail = document.querySelector("#userEmail");
         const userPassword = document.querySelector("#userPassword");
-        const loginContent = document.querySelector("#logincontent");
-        const authContent = document.querySelector("#authcontent");
+        const loginContent = document.querySelector("#loginContent");
+        const authContent = document.querySelector("#authContent");
         const signUp = document.querySelector("#signUp");
         const signIn = document.querySelector("#signIn");
-        const signOut = document.querySelector("#signOut");
+        // const signOut = document.querySelector("#signOut");
 
-        authContent.style.display = 'none'
+        authContent.style.display = "none";
+
+        const userSingUp = async() => {
+            const signUpEmail = userEmail.value;
+            const signUpPassword = userPassword.value;
+            createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
+            .then((userCredetial) => {
+                const user = userCredetial.user;
+                alert("Your account has been created!");
+                console.log(user)
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.messege;
+                console.log(errorCode = errorMessage); 
+            })
+        }
+
+        signUp.addEventListener('click', userSingUp)
 
 
         </script>
