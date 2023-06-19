@@ -19,10 +19,10 @@ section{
     align-items: center;
     width: 100%;
     height: 100vh;
-    background: url(Images/2.jpeg) no-repeat;
+    background: url(Images/4.jpeg) no-repeat;
     background-size: cover;
     background-position: center;
-    animation: animateBg 5s linear infinite;
+    animation: animateBg 12s linear infinite;
 }
 
 @keyframes animateBg {

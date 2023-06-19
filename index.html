@@ -88,7 +88,7 @@
 
         authContent.style.display = "none";
 
-        const userSingUp = async() => {
+        const userSignUp = async() => {
             const signUpEmail = userEmail.value;
             const signUpPassword = userPassword.value;
             createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
@@ -104,7 +104,7 @@
             })
         }
 
-        signUp.addEventListener('click', userSingUp)
+        signUp.addEventListener('click', userSignUp);
 
 
         </script>
