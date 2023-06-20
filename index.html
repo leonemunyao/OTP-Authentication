@@ -91,20 +91,23 @@
         const userSignUp = async() => {
             const signUpEmail = userEmail.value;
             const signUpPassword = userPassword.value;
-            createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
+            await createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
             .then((userCredetial) => {
                 const user = userCredetial.user;
-                alert("Your account has been created!");
+                setTimeout(()=>{
+                    alert("Your account has been created!");
+                },3000)
                 console.log(user)
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.messege;
                 console.log(errorCode = errorMessage); 
+                console.log("1");
             })
         }
 
-        signUp.addEventListener('click', userSignUp);
+        signUp.addEventListener('click',userSignUp);
 
 
         </script>
