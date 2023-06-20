@@ -24,7 +24,7 @@
                 <div class="input-box">
                     <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon>
                     </span>
-                    <input type="password" required id="userPassword" autocomplete="on">
+                    <input type="password" required id="userPassword">
                     <label>Password</label>
                 </div>
     
@@ -91,23 +91,68 @@
         const userSignUp = async() => {
             const signUpEmail = userEmail.value;
             const signUpPassword = userPassword.value;
-            await createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
+            createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
             .then((userCredetial) => {
                 const user = userCredetial.user;
-                setTimeout(()=>{
-                    alert("Your account has been created!");
-                },3000)
                 console.log(user)
+                alert("Your account has been created!");
+
+                userEmail.value = '';
+                userPassword.value = '';
             })
             .catch((error) => {
                 const errorCode = error.code;
-                const errorMessage = error.messege;
-                console.log(errorCode = errorMessage); 
-                console.log("1");
+                const errorMessage = error.message;
+                console.log(errorCode = errorMessage);
             })
         }
 
-        signUp.addEventListener('click',userSignUp);
+        const userSignIn = async() => {
+            const signInEmail = userEmail.value;
+            const signInPassword = userPassword.value;
+            signInWithEmailAndPassword(auth, signInEmail, signInPassword)
+            .then((userCredetial) => {
+                const user = userCredetial.user;
+                console.log(user);
+                alert("Your have successfully signed in!");
+
+                userEmail.value = '';
+                userPassword.value = '';
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode = errorMessage);
+            })
+        }
+
+
+
+        // const checkAuthState = async() => {
+        //     onAuthStateChanged(auth, user => {
+        //         if(user) {
+        //             loginContent.style.display = 'none';
+        //             // authContent.style.display = 'block';    
+        //         }
+        //         else {
+        //             loginContent.style.display = 'block';
+        //             authContent.style.display = 'none';
+        //         }
+        //     })
+        // }
+
+        //     checkAuthState();  
+
+                signUp.addEventListener('click', (event) => {
+                event.preventDefault();
+                userSignUp();
+            });
+
+                signIn.addEventListener('click', (event) => {
+                event.preventDefault();
+                userSignIn();
+            });
+
 
 
         </script>
